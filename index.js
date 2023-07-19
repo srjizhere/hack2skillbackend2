@@ -15,7 +15,9 @@ app.use(cors());
 
 const port = process.env.PORT  || 8080;
 const apiKeys = process.env.YOUTUBE_API.split(',') || []
-
+(async function(){
+  await connection;
+})()
 
 
 
@@ -66,6 +68,6 @@ app.use( "/api/videos",videoRouter);
 app.use("/api/search",searchRouter);
 
 app.listen(port, async () => {
-  await connection;
+
   console.log("Server started at port"+ port);
 });
