@@ -2,7 +2,6 @@ const { VideoModel } = require("../model/video.model");
 
 const videoController = async (req, res) => {
   console.log("video controller visited");
-  
   try {
     const page = req.query.page || 1;
 
