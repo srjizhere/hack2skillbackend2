@@ -29,34 +29,34 @@ function RotateAPIKey() {
   return apiKey;
 }
 
-setInterval(async () =>
-  // 10  sec of  interval storing the latest videos
+// setInterval(async () =>
+//   // 10  sec of  interval storing the latest videos
 
-  {
-    const currentApiKey = RotateAPIKey(); // Rotate the API
-    const res = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search`,
-      {
-        params: {
-          key: currentApiKey,
-          q: "morning tea",
-          part: "snippet",
-          maxResults: 20,
-          type: "video",
-          order: "date",
-        },
-      }
-    );
+//   {
+//     const currentApiKey = RotateAPIKey(); // Rotate the API
+//     const res = await axios.get(
+//       `https://www.googleapis.com/youtube/v3/search`,
+//       {
+//         params: {
+//           key: currentApiKey,
+//           q: "morning tea",
+//           part: "snippet",
+//           maxResults: 20,
+//           type: "video",
+//           order: "date",
+//         },
+//       }
+//     );
 
-    const video = res.data.items.map((item) => ({
-      title: item.snippet.title,
-      description: item.snippet.description,
-      publishedDate: item.snippet.publishedAt,
-      thumbnails: item.snippet.thumbnails,
-    }));
+//     const video = res.data.items.map((item) => ({
+//       title: item.snippet.title,
+//       description: item.snippet.description,
+//       publishedDate: item.snippet.publishedAt,
+//       thumbnails: item.snippet.thumbnails,
+//     }));
 
-    await VideoModel.insertMany(video);
-  }, 10000);
+//     await VideoModel.insertMany(video);
+//   }, 10000);
 
 app.get("/", (req, res) => {
   res.status(200).send({msg:"This is the base URL of Assignment2"});
